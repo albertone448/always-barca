@@ -23,7 +23,13 @@ El gasto neto absoluto no es comparable entre 1996 y 2020, el mercado de fichaje
 - **Tres eras bien diferenciadas en el rendimiento histórico:** inestabilidad en el banquillo (1994-2003, valle mínimo bajo Rexach), la era dorada de Guardiola-Vilanova (2008-2013, pico absoluto en la temporada del récord de 100 puntos), y recuperación reciente tras la crisis institucional de la etapa Koeman.
 - **2003/04 y 2004/05 muestran la mayor proporción de mercado del rango** (~25% del gasto total de La Liga), coincidiendo con la reconstrucción del equipo tras la crisis de Van Gaal/Antić, con los fichajes de Ronaldinho y Deco.
 
+### Análisis integrador: rendimiento, gasto y entrenador en el tiempo
+
+Se construyó una visualización que combina las tres variables centrales en un solo gráfico (rendimiento como línea, gasto como barras, entrenador como fondo por tramos), revelando un patrón que los gráficos individuales no mostraban: **el gasto tiende a concentrarse al inicio de cada ciclo de entrenador**, más como una inversión de renovación que como predictor directo de rendimiento esa misma temporada. La temporada de mayor gasto relativo de todo el rango (2003/04, inicio de Rijkaard) antecede a la recuperación del club, mientras que hacia el final de ese mismo ciclo (2006/07-2007/08) el gasto se sostiene pero el rendimiento cae, ilustrando el desgaste natural de una etapa.
+
 **Limitación honesta:** son hallazgos descriptivos sólidos, respaldados por validación cruzada y contraste con hechos históricos reales, pero no pruebas causales. Se documentan como tal en los notebooks correspondientes.
+
+**Con esto, la Fase 1 del proyecto queda formalmente cerrada.**
 
 ### Lo que sigue pendiente
 
