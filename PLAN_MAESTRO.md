@@ -1,0 +1,115 @@
+# Plan maestro — always-barca
+
+Documento de seguimiento secuencial. Se trabaja de arriba hacia abajo, un paso a la vez, marcando `[x]` conforme se completa. No saltar pasos: si algo no aplica o se decide dejar para después, se anota explícitamente en vez de simplemente omitirlo, para no perder el rastro entre conversaciones.
+
+---
+
+## PARTE 1 — Completar lo pendiente de Fase 1
+
+### 1.1 Ataque vs defensa: ¿qué pesa más en el rendimiento? — COMPLETO
+- [x] Calcular correlación de Pearson: `goles_favor` vs `rendimiento_relativo` (r=0.787, p<0.001)
+- [x] Calcular correlación de Pearson: `goles_contra` vs `rendimiento_relativo` (r=-0.660, p<0.001)
+- [x] Comparar la fuerza de ambas correlaciones (ataque pesa más que defensa en el dataset completo)
+- [x] Visualización: scatter comparando ambas relaciones lado a lado
+- [x] Revisar si el patrón cambia por era/entrenador (inestable por muestra chica, documentado con cautela)
+- [x] Markdown de hallazgo en el notebook
+- [x] Actualizar README con el hallazgo
+
+### 1.2 Rendimiento local vs visitante por temporada — COMPLETO
+- [x] Cargar `partidos_barca_completo.csv` en el notebook de trabajo
+- [x] Agregar por temporada y condición (local/visitante): puntos por partido, goles a favor/contra
+- [x] Calcular brecha local-visitante y revisar top temporadas de fortaleza de visitante
+- [x] Visualización: líneas de local/visitante en el tiempo + marcas de temporadas de Título
+- [x] Identificar y documentar temporadas con contexto atípico (más de la mitad del calendario afectado): 2020/21 (pandemia, sin público toda la temporada), 2023/24 y 2024/25 (local en Montjuïc por remodelación del Camp Nou)
+- [x] Markdown de hallazgo en el notebook
+- [x] Actualizar README con el hallazgo
+
+### 1.3 Cierre de Fase 1 — COMPLETO
+- [x] Confirmar que no queda ningún punto del planteamiento original de Fase 1 sin abordar
+- [x] Markdown de cierre del notebook 02 actualizado con los 4 análisis (gasto, entrenador, ataque/defensa, local/visitante)
+- [ ] Commit final de Fase 1 (ya con 1.1 y 1.2 incluidos)
+
+---
+
+## PARTE 2 — Fase 2: Uso de canteranos
+
+- [ ] Recolectar lista de canteranos históricos (categoría de Wikipedia "Canteranos del FC Barcelona")
+- [ ] Explorar `appearances.csv` de Transfermarkt (estructura, columnas, cobertura por temporada)
+- [ ] Definir estrategia de cruce de nombres entre fuentes (tildes, nombres completos vs cortos)
+- [ ] Ejecutar el cruce y validar una muestra manual contra la realidad
+- [ ] Resolver fecha de salida de cada canterano en `barca_promociones_cantera.csv` (hoy solo tiene fecha de entrada)
+- [ ] Definir la métrica de "uso de cantera" por temporada (% minutos, % apariciones, u otra)
+- [ ] Calcular la métrica para las temporadas con cobertura de datos
+- [ ] Visualización: uso de cantera por temporada
+- [ ] Analizar relación con rendimiento y con entrenador
+- [ ] Markdown de hallazgos en el notebook
+- [ ] Actualizar README con el cierre de Fase 2
+- [ ] Commit de Fase 2
+
+---
+
+## PARTE 3 — Fase 3: Valor de mercado de plantilla (opcional)
+
+- [ ] Decidir si se hace esta fase o se deja fuera del alcance final
+- [ ] Explorar `player_valuations.csv` (estructura, columnas, cobertura por temporada)
+- [ ] Calcular valor de mercado total de plantilla por temporada
+- [ ] Comparar gasto invertido vs valor de mercado generado
+- [ ] Visualización
+- [ ] Markdown de hallazgos en el notebook
+- [ ] Actualizar README con el cierre de Fase 3
+- [ ] Commit de Fase 3
+
+---
+
+## PARTE 4 — Presentación final
+
+### 4.1 Dashboard en Tableau Public
+- [ ] Definir qué vistas/hojas va a tener el dashboard (basado en los hallazgos ya documentados)
+- [ ] Preparar los CSVs finales que se van a importar a Tableau
+- [ ] Construir las hojas en Tableau Desktop
+- [ ] Armar el dashboard combinando las hojas
+- [ ] Publicar en Tableau Public
+- [ ] Confirmar que el link público funciona
+
+### 4.2 Sitio de portafolio (React + Vercel)
+- [ ] Confirmar si ya existe el sitio base o hay que crearlo desde cero
+- [ ] Sección de proyectos: agregar always-barca
+- [ ] Embeber el dashboard de Tableau Public vía iframe
+- [ ] Desplegar en Vercel
+- [ ] Confirmar que el link público funciona
+
+---
+
+## PARTE 5 — Deuda técnica / sueltos
+
+- [ ] Confirmar si se regeneró el token de Kaggle que quedó expuesto en pantalla hace varias sesiones
+- [ ] Última pasada de revisión general del README, una vez cerradas todas las fases
+
+---
+
+## Referencia: dónde vive cada cosa (notebooks)
+
+| Pieza | Notebook / lugar |
+|---|---|
+| Construcción y limpieza de datos crudos (Fase 1) | `01_exploracion_estructura.ipynb` |
+| Análisis exploratorio de rendimiento/gasto/entrenador | `02_analisis_rendimiento.ipynb` |
+| Ataque vs defensa (1.1) | Extensión de `02_analisis_rendimiento.ipynb` |
+| Local vs visitante (1.2) | Extensión de `02_analisis_rendimiento.ipynb` |
+| Fase 2 (canteranos) | `03_analisis_cantera.ipynb` (nuevo) |
+| Fase 3 (valor de mercado) | `04_valor_mercado.ipynb` (nuevo, si se hace) |
+| Tableau | Fuera del repo de notebooks, en Tableau Public |
+| Sitio de portafolio | Repositorio separado (React/Vercel) |
+
+---
+
+## Ya completado (referencia, no se vuelve a tocar salvo error)
+
+- [x] Rendimiento deportivo por temporada (33 temporadas, 1993/94-2025/26)
+- [x] Reconstrucción de tabla de posiciones desde resultados crudos, validada contra hechos reales
+- [x] Entrenador principal por temporada + tabla detallada de tramos (6 cambios a mitad de temporada)
+- [x] Gasto neto en fichajes (33 temporadas: 12 automatizadas + 21 manuales, validadas cruzadamente)
+- [x] `proporcion_mercado_barca`: métrica de gasto ajustada por inflación del mercado
+- [x] `rendimiento_relativo` y `categoria_temporada` (Título/Top 4/Mala/Catastrófico)
+- [x] `df_maestro.csv`: unión de rendimiento, entrenador y gasto
+- [x] Correlación gasto-rendimiento (Pearson) y comparación por entrenador
+- [x] 7 visualizaciones exploratorias de Fase 1
