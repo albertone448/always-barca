@@ -33,17 +33,23 @@ Documento de seguimiento secuencial. Se trabaja de arriba hacia abajo, un paso a
 
 ## PARTE 2 — Fase 2: Uso de canteranos
 
-- [ ] Recolectar lista de canteranos históricos (categoría de Wikipedia "Canteranos del FC Barcelona")
-- [ ] Explorar `appearances.csv` de Transfermarkt (estructura, columnas, cobertura por temporada)
-- [ ] Definir estrategia de cruce de nombres entre fuentes (tildes, nombres completos vs cortos)
-- [ ] Ejecutar el cruce y validar una muestra manual contra la realidad
-- [ ] Resolver fecha de salida de cada canterano en `barca_promociones_cantera.csv` (hoy solo tiene fecha de entrada)
-- [ ] Definir la métrica de "uso de cantera" por temporada (% minutos, % apariciones, u otra)
-- [ ] Calcular la métrica para las temporadas con cobertura de datos
-- [ ] Visualización: uso de cantera por temporada
-- [ ] Analizar relación con rendimiento y con entrenador
-- [ ] Markdown de hallazgos en el notebook
+- [x] Recolectar lista de canteranos históricos (tabla "Jugadores formados en La Masía" de Wikipedia, 103 nombres, parseada con BeautifulSoup)
+- [x] Explorar `appearances.csv` y `games.csv` de Transfermarkt (estructura, columnas, cobertura por temporada)
+- [x] Detectar y documentar limitación de cobertura: appearances/games solo cubre La Liga desde 2012/13 (14 de 33 temporadas). Decisión tomada: acotar el análisis cuantitativo a ese rango, sin proxy de menor calidad para el resto.
+- [x] Definir estrategia de cruce de nombres entre fuentes (normalización con `unidecode` para tildes)
+- [x] Ejecutar el cruce y validar contra la realidad (casos resueltos: Gavi con nombre corto, Araújo/tildes, Onana/Grimaldo/Cucurella/Miranda/Gabarrón sin minutos de Liga en el rango, corrección de error propio en la tabla de Wikipedia)
+- [x] Validación adicional: top 20 canteranos con más minutos, contrastado contra jugadores conocidos
+- [x] Documentar nota metodológica sobre la definición ambigua de "canterano" (criterio amplio usado, incluye filial)
+- [ ] Resolver fecha de salida de cada canterano en `barca_promociones_cantera.csv` (hoy solo tiene fecha de entrada) — pendiente, no bloqueante para el análisis actual
+- [x] Definir la métrica de "uso de cantera" por temporada (% de minutos jugados en Liga)
+- [x] Calcular la métrica para las 14 temporadas con cobertura de datos (2012/13-2025/26)
+- [x] Detectar y documentar limitación adicional: cobertura reducida de apariciones en 2020/21 (menos registros que el resto, sin explicación de valores nulos)
+- [x] Visualización: uso de cantera por temporada, con estrellas de Título y formato de temporada `2020/21`
+- [ ] **PRIMERO EN LA PRÓXIMA SESIÓN: aplicar el mismo formato de eje (`2020/21` en vez de `2020`) a los gráficos de `02_analisis_rendimiento.ipynb` que usan `anio_inicio` (rendimiento histórico, integrador, local vs visitante)**
+- [ ] Analizar relación entre uso de cantera y rendimiento/entrenador
+- [ ] Markdown de hallazgos finales de Fase 2 en el notebook
 - [ ] Actualizar README con el cierre de Fase 2
+- [ ] Actualizar NOTAS_METODOLOGICAS.md con las técnicas de Fase 2 (BeautifulSoup aplicado, unidecode, validación de nombres, manejo de cobertura parcial)
 - [ ] Commit de Fase 2
 
 ---
