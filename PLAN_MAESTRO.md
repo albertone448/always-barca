@@ -46,8 +46,10 @@ Documento de seguimiento secuencial. Se trabaja de arriba hacia abajo, un paso a
 - [x] Detectar y documentar limitación adicional: cobertura reducida de apariciones en 2020/21 (menos registros que el resto, sin explicación de valores nulos)
 - [x] Visualización: uso de cantera por temporada, con estrellas de Título y formato de temporada `2020/21`
 - [ ] **PRIMERO EN LA PRÓXIMA SESIÓN: aplicar el mismo formato de eje (`2020/21` en vez de `2020`) a los gráficos de `02_analisis_rendimiento.ipynb` que usan `anio_inicio` (rendimiento histórico, integrador, local vs visitante)**
-- [ ] Analizar relación entre uso de cantera y rendimiento/entrenador
-- [ ] Markdown de hallazgos finales de Fase 2 en el notebook
+- [x] Analizar relación entre uso de cantera y rendimiento (Pearson r=0.274, p=0.344, no significativa)
+- [x] Analizar uso de cantera y títulos por entrenador (2+ temporadas), con visualización
+- [x] Markdown de hallazgos finales de Fase 2 en el notebook
+- [x] Reflexión personal documentada por separado (hipótesis sobre el peso de "las personas al mando", marcada explícitamente como no demostrada, con propuesta de Fase 4 en README)
 - [ ] Actualizar README con el cierre de Fase 2
 - [ ] Actualizar NOTAS_METODOLOGICAS.md con las técnicas de Fase 2 (BeautifulSoup aplicado, unidecode, validación de nombres, manejo de cobertura parcial)
 - [ ] Commit de Fase 2
