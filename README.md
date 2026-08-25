@@ -14,7 +14,7 @@ Decidí no limitar el análisis a una sola era (por ejemplo, solo la época Guar
 
 ## Estado actual del proyecto
 
-La Fase 1 está completa: rendimiento deportivo, entrenador y gasto neto en fichajes, unidos en un solo dataset de 33 temporadas (1993/94-2025/26), con un análisis exploratorio completo que además de la pregunta central (gasto vs entrenador) cubre ataque vs defensa y rendimiento local vs visitante.
+Las Fases 1 y 2 están completas: rendimiento deportivo, entrenador, gasto neto en fichajes y uso de canteranos, todo unido y analizado sobre el rango 1993/94-2025/26 (con la limitación de cobertura de canteranos acotada a 2012/13-2025/26).
 
 ### Metodología: cómo se mide una "temporada buena"
 
@@ -29,47 +29,67 @@ El gasto neto absoluto no es comparable entre 1996 y 2020, el mercado de fichaje
 - **Rendimiento y gasto (2014/15-2025/26):** automatizado, vía football-data.co.uk y el dataset de Transfermarkt en Kaggle.
 - **Gasto y gasto total de liga (1993/94-2013/14):** recolección manual desde Transfermarkt, validada cruzadamente contra dos vistas distintas del sitio (balance por club y balance por competición), coincidiendo de forma exacta.
 - **Entrenadores:** tabla construida a mano con fuentes públicas, incluyendo 6 casos de cambio de entrenador a mitad de temporada con fechas verificadas.
+- **Canteranos:** lista de 103 jugadores formados en La Masía (tabla de Wikipedia), cruzada contra apariciones y minutos jugados de Transfermarkt (cobertura desde 2012/13).
+
+## Fase 1: rendimiento, gasto y entrenador (1993/94-2025/26)
 
 ### Hallazgos del análisis exploratorio
 
 - **El gasto no predice el rendimiento de forma estadísticamente significativa.** Correlación de Pearson de 0.227 entre `proporcion_mercado_barca` y `rendimiento_relativo`, con un valor p de 0.204, sobre las 33 temporadas completas.
 - **El entrenador se asocia con más variación en el rendimiento que el gasto.** Guardiola lidera el rendimiento promedio (0.818, 3 títulos en 4 temporadas), seguido de cerca por Luis Enrique y Hansi Flick. Van Gaal, pese a dirigir 4 temporadas, tiene el promedio más bajo del grupo con muestra representativa, y su temporada de mayor gasto relativo del rango completo produjo el peor rendimiento de todos los datos.
 - **El ataque explica más varianza del rendimiento que la defensa.** Ambas correlaciones son altamente significativas (p<0.001), pero de distinta magnitud: goles a favor (r=0.787) pesa más que goles en contra (r=-0.660), coherente con la identidad ofensiva del club en la mayoría de las eras analizadas.
-- **El Barça depende de jugar en casa en la mayoría de las temporadas, aunque la brecha se ha achicado con el tiempo.** Tres temporadas tienen un contexto atípico que altera el significado habitual de "local": 2020/21 (pandemia, toda la temporada sin público en ningún estadio de la liga), y 2023/24-2024/25 (el club jugó como local en el Estadio Olímpico de Montjuïc durante la remodelación del Camp Nou, sin la ventaja histórica ni el aforo del Camp Nou). Ninguna temporada de Título se concentra en los extremos de mayor o menor dependencia del local.
+- **El Barça depende de jugar en casa en la mayoría de las temporadas, aunque la brecha se ha achicado con el tiempo.** Tres temporadas tienen un contexto atípico que altera el significado habitual de "local": 2020/21 (pandemia, toda la temporada sin público en ningún estadio de la liga), y 2023/24-2024/25 (el club jugó como local en el Estadio Olímpico de Montjuïc durante la remodelación del Camp Nou). Ninguna temporada de Título se concentra en los extremos de mayor o menor dependencia del local.
 - **Tres eras bien diferenciadas en el rendimiento histórico:** inestabilidad en el banquillo (1994-2003, valle mínimo bajo Rexach), la era dorada de Guardiola-Vilanova (2008-2013, pico absoluto en la temporada del récord de 100 puntos), y recuperación reciente tras la crisis institucional de la etapa Koeman.
 - **2003/04 y 2004/05 muestran la mayor proporción de mercado del rango** (~25% del gasto total de La Liga), coincidiendo con la reconstrucción del equipo tras la crisis de Van Gaal/Antić, con los fichajes de Ronaldinho y Deco.
 
 ### Análisis integrador: rendimiento, gasto y entrenador en el tiempo
 
-Se construyó una visualización que combina las tres variables centrales en un solo gráfico (rendimiento como línea, gasto como barras, entrenador como fondo por tramos, estrellas marcando temporadas de Título), revelando un patrón que los gráficos individuales no mostraban: **el gasto tiende a concentrarse al inicio de cada ciclo de entrenador**, más como una inversión de renovación que como predictor directo de rendimiento esa misma temporada. La temporada de mayor gasto relativo de todo el rango (2003/04, inicio de Rijkaard) antecede a la recuperación del club, mientras que hacia el final de ese mismo ciclo (2006/07-2007/08) el gasto se sostiene pero el rendimiento cae, ilustrando el desgaste natural de una etapa. Las temporadas de Título, además, se reparten en un rango de gasto muy amplio, sin ningún piso mínimo visible: se ganó la liga tanto con gasto prácticamente nulo (1997/98, 2025/26) como con inversión considerable (era Rijkaard-Guardiola).
+Se construyó una visualización que combina las tres variables centrales en un solo gráfico (rendimiento como línea, gasto como barras, entrenador como fondo por tramos, estrellas marcando temporadas de Título), revelando un patrón que los gráficos individuales no mostraban: **el gasto tiende a concentrarse al inicio de cada ciclo de entrenador**, más como una inversión de renovación que como predictor directo de rendimiento esa misma temporada. Las temporadas de Título, además, se reparten en un rango de gasto muy amplio, sin ningún piso mínimo visible: se ganó la liga tanto con gasto prácticamente nulo (1997/98, 2025/26) como con inversión considerable (era Rijkaard-Guardiola).
 
-**Limitación honesta:** son hallazgos descriptivos sólidos, respaldados por validación cruzada y contraste con hechos históricos reales, pero no pruebas causales. Se documentan como tal en los notebooks correspondientes.
+**Limitación honesta:** son hallazgos descriptivos sólidos, respaldados por validación cruzada y contraste con hechos históricos reales, pero no pruebas causales.
 
-**Con esto, la Fase 1 del proyecto queda formalmente cerrada.**
+## Fase 2: uso de canteranos por temporada (2012/13-2025/26)
 
-## Lo que sigue pendiente
+**Limitación de cobertura:** los datos de partido a partido de Transfermarkt solo cubren La Liga desde 2012/13, así que este análisis se acota a 14 de las 33 temporadas del proyecto. No se aproximó el resto del rango con un proxy de menor calidad (como conteo de plantilla en vez de minutos).
 
-- Uso de canteranos por temporada (Fase 2), con `barca_promociones_cantera.csv` ya generado como insumo (46 ascensos de cantera identificados)
-- Valor de mercado de la plantilla (Fase 3, opcional)
-- Dashboard final en Tableau Public
-- Sitio de portafolio en React, desplegado en Vercel
+**Hallazgos:**
+- El uso de cantera tampoco predice el rendimiento de forma estadísticamente significativa (r=0.274, p=0.344), un patrón similar al del gasto neto en Fase 1.
+- No hay una relación simple entre uso de cantera y títulos: Ronald Koeman tuvo el segundo mayor uso de cantera del grupo analizado (45.7%) sin ganar ningún título en sus 2 temporadas, mientras que Hansi Flick combinó el mayor uso de cantera (48.5%) con el mejor récord de títulos (2 de 2).
+- El caso de Xavi Hernández (menor uso de cantera del grupo, 36%) se explica casi enteramente por la temporada 2023/24, la de menor uso de cantera de todo el rango, coincidiendo con la crisis financiera del club ya documentada en Fase 1.
+
+**Reflexión (no un hallazgo demostrado):** el patrón repetido a lo largo del proyecto, donde ni gasto ni cantera predicen bien el rendimiento pero el entrenador sí muestra diferencias consistentes, sugiere una hipótesis: que la calidad de las decisiones de quienes están al mando pesa más que la disponibilidad de recursos, dado que el Barça cuenta de forma prácticamente constante con cantera de calidad y capacidad de fichaje. Esto no se puede confirmar con datos de un solo club, y queda como posible extensión futura (ver Fase 4 más abajo).
+
+**Entregable adicional (sin pretensión analítica):** un top 15 de los canteranos con más minutos jugados en el rango, como reconocimiento visual al linaje de La Masía, desde Busquets y Messi hasta la generación actual (Yamal, Cubarsí, Fermín López).
+
+## Próximos pasos
+
+- **Fase 3 (opcional):** valor de mercado de plantilla vs gasto invertido, usando `player_valuations.csv` de Transfermarkt.
+- **Fase 4 (idea a futuro, no confirmada):** extender el análisis de "personas al mando" más allá del entrenador, incluyendo directiva y presidencia, comparando contra otros clubes de recursos similares para poder aislar el efecto de las decisiones humanas de los recursos disponibles.
+- Dashboard final en Tableau Public.
+- Sitio de portafolio en React, desplegado en Vercel.
 
 ## Stack
 
-Python, pandas y Jupyter Notebook para limpieza y análisis. Matplotlib para exploración. Tableau Public para el dashboard final.
+Python, pandas y Jupyter Notebook para limpieza y análisis. Matplotlib para exploración. BeautifulSoup para extracción de tablas HTML. Tableau Public para el dashboard final.
+
+## Notas metodológicas
+
+Para el razonamiento detallado detrás de cada decisión técnica y metodológica del proyecto, ver [NOTAS_METODOLOGICAS.md](./NOTAS_METODOLOGICAS.md).
 
 ## Estructura del repositorio
 
 ```
 always-barca/
 ├── data/
-│   ├── raw/            # Datos crudos (resultados de La Liga, Transfermarkt)
+│   ├── raw/            # Datos crudos (resultados de La Liga, Transfermarkt, canteranos)
 │   └── processed/      # Datos limpios y listos para análisis
 ├── notebooks/
 │   ├── 01_exploracion_estructura.ipynb   # Construcción y limpieza de datos (Fase 1)
-│   └── 02_analisis_rendimiento.ipynb     # Análisis exploratorio (Fase 1)
+│   ├── 02_analisis_rendimiento.ipynb     # Análisis exploratorio (Fase 1)
+│   └── 03_analisis_cantera.ipynb         # Uso de canteranos (Fase 2)
 ├── src/
 │   └── descargar_temporadas.py           # Script de descarga automatizada
 └── reports/
     └── figures/                          # Visualizaciones exportadas
+    
 ```

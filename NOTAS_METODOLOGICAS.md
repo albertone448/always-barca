@@ -70,11 +70,11 @@ Este enfoque replica, con datos propios, el mismo principio metodológico que us
 
 ### Visualización con Matplotlib
 
-**Formateo de ejes.** Los valores grandes (millones de euros) o las proporciones se formatearon con `FuncFormatter` para mostrarse en unidades legibles (`150M`, `20%`) en vez de notación científica.
+**Formateo de ejes.** Los valores grandes (millones de euros) o las proporciones se formatearon con `FuncFormatter` para mostrarse en unidades legibles (`150M`, `20%`) en vez de notación científica. El eje de temporadas también se formateó con una función personalizada para mostrar `2020/21` en vez del año simple `2020` usado internamente para ordenar.
 
 **Doble eje Y (`twinx()`).** Usado para graficar rendimiento y gasto en la misma figura pese a tener escalas muy distintas, cada serie con su propio eje.
 
-**Fondo coloreado por tramos (`axvspan`).** Usado para mostrar el entrenador a cargo como una tercera dimensión en un gráfico de series de tiempo, sin necesitar un eje adicional.
+**Fondo coloreado por tramos (`axvspan`).** Usado para mostrar el entrenador a cargo como una tercera dimensión en un gráfico de series de tiempo, sin necesitar un eje adicional. El mismo recurso sirvió para marcar temporadas con limitaciones de cobertura de datos (por ejemplo, la pandemia).
 
 **Boxplots para comparar distribuciones.** Usados para comparar la dispersión del gasto entre categorías de temporada (Título, Top 4, Mala), más informativo que comparar solo promedios.
 
@@ -90,3 +90,37 @@ Este enfoque replica, con datos propios, el mismo principio metodológico que us
 
 **Verificación de resultados contra fuentes externas.** De forma sistemática, los resultados calculados (posiciones finales, récords de puntos, montos de fichajes históricos) se contrastaron con fuentes externas mediante búsqueda web. Esta práctica permitió detectar el error de la temporada 2006/07, un caso que una simple inspección del DataFrame no habría revelado por sí sola.
 
+---
+
+## Fase 2: uso de canteranos
+
+### Parseo de tablas HTML con BeautifulSoup (segundo uso)
+
+La lista de canteranos se extrajo de la tabla "Jugadores formados en La Masía" de Wikipedia, copiando el HTML crudo y parseándolo con `BeautifulSoup`, igual que en Fase 1, esta vez para una tabla con más columnas (nombre, año de nacimiento, rango de carrera, partidos, goles, primer y último club).
+
+### Normalización de texto para cruces por nombre (`unidecode`)
+
+El cruce inicial por `isin()` exacto entre dos fuentes (Wikipedia y Transfermarkt) falló para varios nombres por diferencias de tildes (`Araújo` vs `Araujo`). La solución fue normalizar ambas columnas con `unidecode` antes de comparar, quitando acentos y pasando a minúsculas:
+
+```python
+from unidecode import unidecode
+df['nombre_normalizado'] = df['nombre'].apply(lambda x: unidecode(str(x)).lower())
+```
+
+Esto resuelve de una sola vez la clase completa de problemas de tildes, en vez de perseguir cada caso individualmente.
+
+### Verificación exhaustiva de "no encontrados" antes de asumir errores
+
+De 103 nombres cruzados, 63 no encontraron coincidencia directa contra las apariciones registradas. En vez de asumir que todos eran errores de formato de nombre, se filtraron primero por año de inicio de carrera (¿deberían aparecer, por fecha, dentro del rango de datos disponible?), reduciendo la revisión real a solo 6 casos. De esos, solo uno (Gavi, registrado con nombre completo en Wikipedia pero como apodo en Transfermarkt) era un problema real de formato. El resto resultaron ser jugadores que pasaron por la cantera pero nunca sumaron minutos de Liga con el primer equipo, cada uno verificado individualmente con búsqueda externa, incluyendo la corrección de una hipótesis propia equivocada (se asumió erróneamente que un jugador no era canterano real, cuando sí lo era, solo que debutó profesionalmente en otro club tras formarse en el Barça).
+
+### Documentar límites de cobertura sin forzar una solución
+
+`appearances.csv`/`games.csv` solo cubre La Liga desde 2012/13, muy por debajo del rango de 33 temporadas del resto del proyecto. En vez de aproximar el resto con una métrica de menor calidad (por ejemplo, contar presencia en plantilla en vez de minutos jugados, lo cual habría requerido además reconstruir fechas de salida de cada jugador con trabajo adicional considerable), se decidió acotar el análisis al rango con datos reales y documentar la limitación explícitamente. Se aplicó el mismo criterio en un caso más chico: la temporada 2020/21 mostró un número de apariciones notablemente menor al resto sin explicación de datos nulos, documentado como limitación de cobertura puntual en vez de ignorarla o forzar un ajuste que simulara datos inexistentes.
+
+### Declarar definiciones ambiguas explícitamente
+
+"Canterano" no tiene una definición única y objetiva en el fútbol. Se documentó explícitamente qué criterio usa este proyecto (el de la fuente de Wikipedia, que incluye el filial como parte de la formación) y se ilustró con un caso concreto del propio dataset (Ronald Araújo, que llegó directamente al filial como fichaje externo), para que cualquier lectura del porcentaje de uso de cantera se entienda bajo esa definición específica, no como un estándar universal.
+
+### Separar hallazgos de reflexión personal
+
+Al notar un patrón interesante pero no demostrable con los datos disponibles (la posible influencia de "las personas al mando" más allá del entrenador, extendible a directiva y presidencia), se documentó en una sección explícitamente separada y marcada como reflexión, no como conclusión del análisis, para no mezclar evidencia con especulación razonada. La misma lógica se aplicó al incluir un ranking de canteranos con más minutos como reconocimiento visual, dejando claro que no tiene pretensión analítica.
