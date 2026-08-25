@@ -61,9 +61,18 @@ Se construyó una visualización que combina las tres variables centrales en un 
 
 **Entregable adicional (sin pretensión analítica):** un top 15 de los canteranos con más minutos jugados en el rango, como reconocimiento visual al linaje de La Masía, desde Busquets y Messi hasta la generación actual (Yamal, Cubarsí, Fermín López).
 
+## Fase 3: valor de mercado de plantilla (2012/13-2025/26)
+
+**Limitación de cobertura:** el número de jugadores del Barça con valoración registrada por temporada es muy bajo antes de 2012/13 (8, 6 y 8 jugadores en las primeras temporadas del dataset, muy por debajo de una plantilla real), así que este análisis se acota a las 13 temporadas con cobertura confiable.
+
+**Hallazgo principal:** a diferencia del gasto neto y del uso de cantera, el **valor de mercado de la plantilla sí muestra una correlación fuerte y estadísticamente significativa con el rendimiento** (r=0.753, p=0.002), la relación más fuerte encontrada en todo el proyecto. La explicación conceptual: gasto neto mide el movimiento de un solo verano (una variable de flujo), mientras que valor de plantilla mide el activo acumulado completo en un momento dado (una variable de stock), y ese acumulado se traduce mejor en resultados que la inversión puntual de una temporada. Aun así, valor alto no garantiza el título: hay temporadas sin título con valores de plantilla similares o superiores a otras que sí lo ganaron, señal de que la fortaleza del rival también pesa.
+
+**De dónde viene ese valor:** en 2024/25 y 2025/26, el balance de fichajes del Barça cerró prácticamente en cero, y sin embargo son las dos temporadas con mayor valor de plantilla de todo el rango. Ese valor no vino de inversión reciente, vino de jugadores creados en casa sin coste de fichaje (Lamine Yamal, Gavi, Fermín López, Alejandro Balde, formados en La Masía) y de canteranos que salieron y regresaron a bajo coste, revalorizándose después (Eric García, que volvió como agente libre en 2021 tras salir del club en 2017).
+
+**Con esto se cierra la Fase 3 del proyecto.**
+
 ## Próximos pasos
 
-- **Fase 3 (opcional):** valor de mercado de plantilla vs gasto invertido, usando `player_valuations.csv` de Transfermarkt.
 - **Fase 4 (idea a futuro, no confirmada):** extender el análisis de "personas al mando" más allá del entrenador, incluyendo directiva y presidencia, comparando contra otros clubes de recursos similares para poder aislar el efecto de las decisiones humanas de los recursos disponibles.
 - Dashboard final en Tableau Public.
 - Sitio de portafolio en React, desplegado en Vercel.
@@ -91,5 +100,4 @@ always-barca/
 │   └── descargar_temporadas.py           # Script de descarga automatizada
 └── reports/
     └── figures/                          # Visualizaciones exportadas
-    
 ```

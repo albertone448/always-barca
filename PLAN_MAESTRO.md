@@ -56,14 +56,21 @@ Documento de seguimiento secuencial. Se trabaja de arriba hacia abajo, un paso a
 
 ---
 
-## PARTE 3 — Fase 3: Valor de mercado de plantilla (opcional)
+## PARTE 3 — Fase 3: Valor de mercado de plantilla — COMPLETA
 
-- [ ] Decidir si se hace esta fase o se deja fuera del alcance final
-- [ ] Explorar `player_valuations.csv` (estructura, columnas, cobertura por temporada)
-- [ ] Calcular valor de mercado total de plantilla por temporada
-- [ ] Comparar gasto invertido vs valor de mercado generado
-- [ ] Visualización
-- [ ] Markdown de hallazgos en el notebook
+- [x] Decidir hacer la fase (confirmado)
+- [x] Explorar `player_valuations.csv` (estructura, columnas, cobertura por temporada)
+- [x] Verificar ID de club correcto (`current_club_id`, 131 confirmado, consistente con transfers/appearances)
+- [x] Definir método de agregación (última valoración por jugador dentro de cada temporada, corte en julio)
+- [x] Detectar y documentar limitación de cobertura: número de jugadores contados por temporada muy bajo antes de 2012/13 (8, 6, 8 jugadores). Decisión: acotar a 2012/13-2025/26 (13 temporadas)
+- [x] Calcular valor total de plantilla y valor promedio por jugador (como verificación cruzada de confiabilidad, no como métrica alternativa de igual peso)
+- [x] Calcular `valor_relativo_plantilla` (% del mercado total de La Liga), mismo principio metodológico que `proporcion_mercado_barca`
+- [x] Correlación con rendimiento: r=0.753, p=0.002 — la única variable de recursos del proyecto con relación estadísticamente significativa
+- [x] Visualización: valor de plantilla vs rendimiento, con estrellas de Título
+- [x] Cruce adicional: valor de plantilla vs gasto reciente, para distinguir valor generado internamente (cantera, revalorización) de valor comprado
+- [x] Visualización de ese cruce, con estrellas de Título y ajuste manual de etiquetas superpuestas (offsets + flechas)
+- [x] Ejemplificar con casos reales verificados (Yamal, Gavi, Fermín López, Balde como cantera pura; Eric García como canterano recuperado gratis, verificado con búsqueda externa)
+- [x] Markdown de conclusión combinada (rendimiento + gasto reciente) en el notebook
 - [ ] Actualizar README con el cierre de Fase 3
 - [ ] Commit de Fase 3
 
@@ -90,7 +97,7 @@ Documento de seguimiento secuencial. Se trabaja de arriba hacia abajo, un paso a
 
 ## PARTE 5 — Deuda técnica / sueltos
 
-- [ ] Confirmar si se regeneró el token de Kaggle que quedó expuesto en pantalla hace varias sesiones
+- [x] Confirmar si se regeneró el token de Kaggle que quedó expuesto en pantalla hace varias sesiones — confirmado, regenerado
 - [ ] Última pasada de revisión general del README, una vez cerradas todas las fases
 
 ---

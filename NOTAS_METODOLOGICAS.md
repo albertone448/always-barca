@@ -124,3 +124,36 @@ De 103 nombres cruzados, 63 no encontraron coincidencia directa contra las apari
 ### Separar hallazgos de reflexión personal
 
 Al notar un patrón interesante pero no demostrable con los datos disponibles (la posible influencia de "las personas al mando" más allá del entrenador, extendible a directiva y presidencia), se documentó en una sección explícitamente separada y marcada como reflexión, no como conclusión del análisis, para no mezclar evidencia con especulación razonada. La misma lógica se aplicó al incluir un ranking de canteranos con más minutos como reconocimiento visual, dejando claro que no tiene pretensión analítica.
+
+---
+
+## Fase 3: valor de mercado de plantilla
+
+### Agregación de datos sin cadencia fija (fecha de corte por temporada)
+
+`player_valuations.csv` registra el valor de mercado de cada jugador en fechas irregulares (cuando Transfermarkt actualiza su estimación), no en una cadencia fija por temporada. En vez de buscar una fecha exacta de corte (que habría fallado en años con pocas valoraciones), se tomó la última valoración disponible de cada jugador dentro de cada temporada, usando julio como mes de corte entre una temporada y la siguiente, coherente con el calendario real del mercado de fichajes europeo:
+
+```python
+def fecha_a_temporada(fecha):
+    if fecha.month >= 7:
+        inicio = fecha.year
+    else:
+        inicio = fecha.year - 1
+    return f'{str(inicio)[2:]}{str(inicio+1)[2:]}'
+```
+
+### Validar un total con una métrica secundaria, no reemplazarlo
+
+Para descartar que el valor total de plantilla por temporada estuviera distorsionado simplemente por cuántos jugadores tenían valoración registrada ese año (entre 19 y 37 según la temporada), se calculó también el valor promedio por jugador como verificación cruzada, no como métrica alternativa de igual peso analítico: el total sigue siendo la medida correcta para "cuánto vale el activo completo", y el promedio solo confirma que un patrón visto en el total no es un artefacto de conteo.
+
+### Corregir un diagnóstico propio equivocado con búsqueda externa
+
+Al ejemplificar con casos reales de jugadores revalorizados sin coste de fichaje reciente, se verificó cada caso con búsqueda externa antes de nombrarlo en el análisis. Esto evitó afirmar datos de memoria que podían ser imprecisos (por ejemplo, confirmar la fecha y condición exacta del regreso de un jugador al club antes de citarlo como ejemplo).
+
+### Depurar errores de estado en el kernel, no solo de código
+
+Un error de `KeyError` en una columna que debería existir no siempre significa que el código esté mal escrito: puede significar que una celda anterior falló silenciosamente o nunca se ejecutó en el orden esperado, dejando una variable en un estado incompleto. La forma más robusta de resolverlo no es parchear la celda que falla, sino reconstruir la variable completa en una sola celda autocontenida, sin depender de que varias celdas previas se hayan ejecutado en un orden específico.
+
+### Ajuste manual de etiquetas superpuestas en gráficos de dispersión
+
+Cuando dos o más puntos de un scatter caen muy cerca entre sí, sus etiquetas de texto (`ax.annotate`) se superponen y quedan ilegibles. La solución aplicada fue un diccionario de desplazamientos manuales solo para los casos identificados visualmente como problemáticos, dejando el resto con un offset por defecto. Cuando el desplazamiento aleja demasiado la etiqueta de su punto, se agregó una flecha fina (`arrowprops`) conectando texto y punto, para no perder la trazabilidad visual de a qué dato corresponde cada etiqueta.
