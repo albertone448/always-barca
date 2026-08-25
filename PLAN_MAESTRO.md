@@ -76,6 +76,33 @@ Documento de seguimiento secuencial. Se trabaja de arriba hacia abajo, un paso a
 
 ---
 
+## PARTE 3.5 — Fase 4: Presidentes / directiva
+
+Continuación de la reflexión documentada al cierre de Fase 2: si el entrenador se asocia con más variación en el rendimiento que el gasto o la cantera, ¿pasa lo mismo con la presidencia del club? No resuelve la comparación entre clubes (fuera de alcance, requeriría datos de otros equipos), pero sí permite ver el patrón dentro del propio Barça con la misma metodología ya usada para entrenadores.
+
+- [ ] Recolectar tabla de presidentes del FC Barcelona por periodo (temporada de inicio y fin de cada mandato), fuente pública (Wikipedia u oficial del club)
+- [ ] Construir tabla detallada por tramos (mismo patrón que `entrenadores_detalle.csv`), incluyendo posibles cambios a mitad de temporada
+- [ ] Derivar tabla agregada `presidente_temporada` (una fila por temporada) para el merge
+- [ ] Unir con `df_maestro` por temporada
+- [ ] Calcular rendimiento promedio por presidente (mismo criterio de muestra mínima ya usado con entrenadores)
+- [ ] Calcular gasto/valor de plantilla promedio por presidente
+- [ ] Visualización(es) comparando presidentes
+- [ ] Markdown de hallazgos, con la misma cautela sobre causalidad ya aplicada en el resto del proyecto
+- [ ] Actualizar README con el cierre de Fase 4
+- [ ] Commit de Fase 4
+
+---
+
+## PARTE 3.6 — Unificación final (antes de Tableau)
+
+- [ ] Consolidar en un solo dataset (o conjunto mínimo de tablas relacionadas) todo lo construido: rendimiento, entrenador, gasto, proporción de mercado, uso de cantera, valor de plantilla, presidente
+- [ ] Guardar ese dataset consolidado en `data/processed/`, listo para importar a Tableau sin transformaciones adicionales
+- [ ] Escribir una narrativa consolidada de los hallazgos de las 4 fases en conjunto (documento o notebook de cierre), no solo cada fase por separado
+- [ ] Revisar que README, PLAN_MAESTRO y NOTAS_METODOLOGICAS reflejen el proyecto completo de punta a punta
+- [ ] Commit de cierre de la etapa de análisis completa
+
+---
+
 ## PARTE 4 — Presentación final
 
 ### 4.1 Dashboard en Tableau Public
