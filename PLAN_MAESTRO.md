@@ -76,18 +76,17 @@ Documento de seguimiento secuencial. Se trabaja de arriba hacia abajo, un paso a
 
 ---
 
-## PARTE 3.5 — Fase 4: Presidentes / directiva
+## PARTE 3.5 — Fase 4: Presidentes / directiva — COMPLETA
 
-Continuación de la reflexión documentada al cierre de Fase 2: si el entrenador se asocia con más variación en el rendimiento que el gasto o la cantera, ¿pasa lo mismo con la presidencia del club? No resuelve la comparación entre clubes (fuera de alcance, requeriría datos de otros equipos), pero sí permite ver el patrón dentro del propio Barça con la misma metodología ya usada para entrenadores.
-
-- [ ] Recolectar tabla de presidentes del FC Barcelona por periodo (temporada de inicio y fin de cada mandato), fuente pública (Wikipedia u oficial del club)
-- [ ] Construir tabla detallada por tramos (mismo patrón que `entrenadores_detalle.csv`), incluyendo posibles cambios a mitad de temporada
-- [ ] Derivar tabla agregada `presidente_temporada` (una fila por temporada) para el merge
-- [ ] Unir con `df_maestro` por temporada
-- [ ] Calcular rendimiento promedio por presidente (mismo criterio de muestra mínima ya usado con entrenadores)
-- [ ] Calcular gasto/valor de plantilla promedio por presidente
-- [ ] Visualización(es) comparando presidentes
-- [ ] Markdown de hallazgos, con la misma cautela sobre causalidad ya aplicada en el resto del proyecto
+- [x] Recolectar tabla de presidentes del FC Barcelona por periodo (Wikipedia + fuentes oficiales, fechas verificadas)
+- [x] Construir tabla detallada por tramos (`presidentes_detalle.csv`, 38 filas), incluyendo 2 casos de múltiples cambios a mitad de temporada (2002/03: Gaspart → Reyna → Comisión Gestora; 2020/21: Bartomeu → Tusquets → Laporta)
+- [x] Derivar tabla agregada `presidentes_temporada.csv` (33 filas) para el merge
+- [x] Unir con `df_maestro` por temporada (persistido de vuelta en `df_maestro.csv`)
+- [x] Calcular rendimiento promedio por presidente (los 5 presidentes del rango tienen 2+ temporadas, ninguno cae en "caso aislado")
+- [x] Calcular gasto y valor de plantilla promedio por presidente
+- [x] 3 visualizaciones: gasto por presidente, rendimiento vs gasto lado a lado, valor de plantilla por presidente
+- [x] Corrección metodológica importante detectada por el usuario: el gasto promedio no equivale a mejor/peor gestión sin considerar el contexto financiero heredado (Laporta asumió dos veces en medio de crisis heredadas de Gaspart y Bartomeu, verificado con fuentes externas: deuda de 180M€ gastados por Gaspart en 2000-01, deuda de 1.350M€ heredada de Bartomeu en 2021)
+- [x] Markdown de hallazgos con esta corrección incorporada
 - [ ] Actualizar README con el cierre de Fase 4
 - [ ] Commit de Fase 4
 

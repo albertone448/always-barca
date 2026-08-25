@@ -71,9 +71,21 @@ Se construyó una visualización que combina las tres variables centrales en un 
 
 **Con esto se cierra la Fase 3 del proyecto.**
 
+## Fase 4: presidentes y directiva
+
+Continuación de la reflexión documentada al cierre de Fase 2: ¿la presidencia del club se asocia con la misma variación en el rendimiento que ya se vio con el entrenador?
+
+**Corrección metodológica importante:** el gasto promedio por presidente no debe leerse como "más gasto es mejor gestión". Joan Laporta llegó a la presidencia dos veces en medio de crisis financieras heredadas de sus antecesores: en 2003, tras Joan Gaspart, quien había gastado 180 millones de euros en dos mercados y dejó al club en tal estado que tuvo que regalar a Rivaldo al Milan solo para no pagar su sueldo. En 2021, tras Josep Maria Bartomeu, quien dejó una deuda de 1.350 millones de euros, tan grave que el club no pudo ni renovar a Messi. La evidencia lo confirma: Gaspart y Laporta tienen prácticamente el mismo gasto promedio (7.5% del mercado), pero quedan en extremos opuestos de rendimiento (Gaspart el peor de los cinco presidentes del rango, Laporta el de más títulos en total), señal de que el gasto promedio por sí solo no cuenta la historia sin el contexto de qué estado encontró cada uno al asumir.
+
+**Hallazgos:** Sandro Rosell lidera rendimiento (0.820), gasto (11.3%) y valor de plantilla (18.0%) promedio, heredando y continuando la era Guardiola sobre una base ya sólida. Joan Gaspart tiene el peor rendimiento (0.535, 0 títulos), la crisis institucional más profunda del rango.
+
+**Limitación central:** con datos de un solo club, no se puede aislar el efecto de las decisiones de la presidencia de otros factores compartidos por toda una era. La hipótesis planteada en la reflexión de Fase 2 (que el factor humano en el mando pesa más que los recursos disponibles) sigue sin poder confirmarse ni descartarse con rigor estadístico, pero el patrón de Laporta limpiando dos crisis heredadas con gasto similar al de quien las generó es un matiz real que la enriquece.
+
+**Con esto se cierra la Fase 4 del proyecto.**
+
 ## Próximos pasos
 
-- **Fase 4 (idea a futuro, no confirmada):** extender el análisis de "personas al mando" más allá del entrenador, incluyendo directiva y presidencia, comparando contra otros clubes de recursos similares para poder aislar el efecto de las decisiones humanas de los recursos disponibles.
+- Unificación final de las 4 fases en un dataset y narrativa consolidados.
 - Dashboard final en Tableau Public.
 - Sitio de portafolio en React, desplegado en Vercel.
 

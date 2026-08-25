@@ -157,3 +157,19 @@ Un error de `KeyError` en una columna que debería existir no siempre significa 
 ### Ajuste manual de etiquetas superpuestas en gráficos de dispersión
 
 Cuando dos o más puntos de un scatter caen muy cerca entre sí, sus etiquetas de texto (`ax.annotate`) se superponen y quedan ilegibles. La solución aplicada fue un diccionario de desplazamientos manuales solo para los casos identificados visualmente como problemáticos, dejando el resto con un offset por defecto. Cuando el desplazamiento aleja demasiado la etiqueta de su punto, se agregó una flecha fina (`arrowprops`) conectando texto y punto, para no perder la trazabilidad visual de a qué dato corresponde cada etiqueta.
+
+---
+
+## Fase 4: presidentes y directiva
+
+### Replicar una metodología ya validada, en vez de inventar una nueva
+
+La tabla de presidentes se construyó con exactamente el mismo patrón que `entrenadores_detalle.csv` (tabla detallada por tramos + tabla agregada por temporada), reutilizando una estructura ya probada en vez de diseñar algo nuevo. Esto ahorró tiempo y redujo el riesgo de errores, porque el patrón ya había sido validado en Fase 1.
+
+### No todo hallazgo cuantitativo resiste una lectura ingenua
+
+El gasto promedio por presidente, tomado de forma aislada, sugería una lectura simplista ("más gasto, mejor o peor gestión" según el caso). Al señalar el usuario que Joan Laporta asumió la presidencia en ambas ocasiones tras crisis financieras heredadas de sus antecesores, se verificó esta afirmación con búsqueda externa (confirmando cifras concretas: 180M€ gastados por Gaspart en 2000-01, deuda de 1.350M€ heredada de Bartomeu en 2021) y se reescribió la conclusión completa. El hallazgo visual que sostiene esta corrección es contundente: Gaspart y Laporta tienen el mismo gasto promedio (7.5%) pero resultados opuestos, evidencia de que una métrica de gasto promedio, sin el contexto de la situación financiera heredada, puede llevar a una conclusión equivocada sobre la calidad de gestión de un presidente.
+
+### Verificar afirmaciones de terceros antes de incorporarlas, no solo las propias
+
+A lo largo del proyecto se verificaron tanto errores propios (la corrección de 2006/07 en Fase 1, la hipótesis equivocada sobre Onana en Fase 2) como correcciones sugeridas por el usuario (el matiz sobre el gasto de Laporta en esta fase). En ambos casos se aplicó el mismo estándar: ninguna afirmación, propia o ajena, se incorpora al análisis sin verificación externa cuando es posible verificarla.
