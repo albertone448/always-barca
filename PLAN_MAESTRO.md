@@ -92,12 +92,13 @@ Documento de seguimiento secuencial. Se trabaja de arriba hacia abajo, un paso a
 
 ---
 
-## PARTE 3.6 — Unificación final (antes de Tableau)
+## PARTE 3.6 — Unificación final (antes de Tableau) — COMPLETA
 
-- [ ] Consolidar en un solo dataset (o conjunto mínimo de tablas relacionadas) todo lo construido: rendimiento, entrenador, gasto, proporción de mercado, uso de cantera, valor de plantilla, presidente
-- [ ] Guardar ese dataset consolidado en `data/processed/`, listo para importar a Tableau sin transformaciones adicionales
-- [ ] Escribir una narrativa consolidada de los hallazgos de las 4 fases en conjunto (documento o notebook de cierre), no solo cada fase por separado
-- [ ] Revisar que README, PLAN_MAESTRO y NOTAS_METODOLOGICAS reflejen el proyecto completo de punta a punta
+- [x] Consolidar en un solo dataset (`dataset_final.csv`, 33 temporadas) todo lo construido: rendimiento, entrenador, gasto, proporción de mercado, uso de cantera, valor de plantilla, presidente
+- [x] Guardar ese dataset consolidado en `data/processed/`, listo para importar a Tableau sin transformaciones adicionales
+- [x] Visualización resumen: comparación de correlaciones de las 3 variables de recursos (gasto, cantera, valor de plantilla) contra rendimiento, en un solo gráfico
+- [x] Escribir una narrativa consolidada de los hallazgos de las 4 fases en conjunto (notebook `06_dataset_final.ipynb`)
+- [x] Revisar que README, PLAN_MAESTRO y NOTAS_METODOLOGICAS reflejen el proyecto completo de punta a punta
 - [ ] Commit de cierre de la etapa de análisis completa
 
 ---

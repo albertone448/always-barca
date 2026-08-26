@@ -173,3 +173,47 @@ El gasto promedio por presidente, tomado de forma aislada, sugería una lectura 
 ### Verificar afirmaciones de terceros antes de incorporarlas, no solo las propias
 
 A lo largo del proyecto se verificaron tanto errores propios (la corrección de 2006/07 en Fase 1, la hipótesis equivocada sobre Onana en Fase 2) como correcciones sugeridas por el usuario (el matiz sobre el gasto de Laporta en esta fase). En ambos casos se aplicó el mismo estándar: ninguna afirmación, propia o ajena, se incorpora al análisis sin verificación externa cuando es posible verificarla.
+
+---
+
+## Consolidación final: comparando variables continuas y categóricas en la misma unidad
+
+### El problema: Pearson no sirve para variables categóricas
+
+Gasto, cantera y valor de plantilla son numéricas continuas, así que Pearson (r) las compara directamente. Entrenador y presidente son categóricos (nombres, no números). Para comparar los cinco en una sola tabla, se necesitaba una técnica que produjera un número en la misma escala interpretativa que r, aplicable a variables de grupo.
+
+### ANOVA y eta cuadrado (η²)
+
+Un ANOVA de un factor (`scipy.stats.f_oneway`) prueba si el promedio de una variable continua difiere significativamente entre los grupos de una variable categórica. De ahí se deriva **eta cuadrado (η²)**, que se interpreta igual que un R²: proporción de varianza total explicada por la pertenencia a un grupo.
+
+```python
+def eta_cuadrado(df, variable_categorica, variable_continua):
+    grupos = [grupo[variable_continua].values for _, grupo in df.groupby(variable_categorica)]
+    f_stat, p_valor = stats.f_oneway(*grupos)
+
+    gran_media = df[variable_continua].mean()
+    ss_total = ((df[variable_continua] - gran_media) ** 2).sum()
+    ss_entre = sum(len(g) * (g.mean() - gran_media) ** 2 for g in grupos)
+    eta2 = ss_entre / ss_total
+    return eta2, p_valor
+```
+
+Para que la comparación entre las cinco variables fuera honesta, se usó **r² (no r)** para las tres continuas, ya que r² y η² representan la misma cantidad conceptual (proporción de varianza explicada), mientras que r y η² no son directamente comparables en magnitud.
+
+### Corregir un sesgo real: grupos de tamaño 1 inflan η² artificialmente
+
+Cuando un grupo (un entrenador con una sola temporada) tiene una única observación, su varianza interna es matemáticamente cero, así que toda su distancia respecto al promedio general se contabiliza como "explicada por la categoría", sin reflejar necesariamente un patrón real. Por eso, únicamente para este cálculo puntual, se filtraron los entrenadores con menos de 2 temporadas (mismo criterio de muestra mínima ya usado en el resto del proyecto para tablas y gráficos individuales, donde esos casos sí se muestran, con su nota de "no comparable"). El filtro afecta solo el cálculo de η², no ninguna otra parte del proyecto.
+
+Presidente no necesitó este filtro: los 5 presidentes del rango tienen 2 o más temporadas cada uno.
+
+### Distinguir tamaño del efecto (r²/η²) de confianza en el resultado (p)
+
+Dos preguntas distintas, que conviene no confundir:
+- **Varianza explicada (r² o η²):** de toda la variación del rendimiento entre temporadas, ¿qué proporción se puede atribuir a esta variable? Mide el **tamaño** del efecto.
+- **Valor p:** ¿qué tan probable es que ese patrón observado sea producto del azar, si en la realidad no existiera ninguna relación? Mide la **confianza** en que el resultado no es casualidad.
+
+Un valor de r²/η² pequeño (como el de gasto, 0.052) puede coexistir con "no significativo" (p alto): con pocas observaciones, un efecto chico fácilmente puede deberse al azar. Un valor grande (como el de entrenador, 0.727) típicamente produce un p muy bajo, porque un efecto de esa magnitud es mucho menos probable que ocurra por casualidad.
+
+### Verificar una hipótesis alternativa antes de descartarla sin evidencia
+
+Al notar que la correlación de cantera era débil, se planteó la hipótesis de que la variable simplemente variaba poco entre temporadas (poca "señal" estadística disponible). Se verificó calculando el coeficiente de variación (desviación estándar entre la media) de cantera y de valor de plantilla, la variable con la que se comparaba. El resultado descartó la hipótesis: ambas variables tienen variabilidad relativa similar (cantera incluso ligeramente mayor), así que la diferencia en la fuerza de la correlación no se explica por cuánto varía cada una, sino, más probablemente, porque el rendimiento depende más de la calidad específica de los jugadores de cantera en cancha que de la cantidad total de minutos acumulados. Documentar y descartar una hipótesis con evidencia es tan valioso como confirmar una, evita quedarse con la primera explicación intuitiva sin comprobarla.
