@@ -1,4 +1,4 @@
-# always-barca
+# Always Barça
 
 Análisis histórico del FC Barcelona: qué relación existe entre el gasto neto en fichajes, el entrenador a cargo y el rendimiento deportivo del equipo, temporada a temporada, desde 1993/94 hasta hoy.
 

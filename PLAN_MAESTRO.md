@@ -96,22 +96,54 @@ Documento de seguimiento secuencial. Se trabaja de arriba hacia abajo, un paso a
 
 - [x] Consolidar en un solo dataset (`dataset_final.csv`, 33 temporadas) todo lo construido: rendimiento, entrenador, gasto, proporción de mercado, uso de cantera, valor de plantilla, presidente
 - [x] Guardar ese dataset consolidado en `data/processed/`, listo para importar a Tableau sin transformaciones adicionales
-- [x] Visualización resumen: comparación de correlaciones de las 3 variables de recursos (gasto, cantera, valor de plantilla) contra rendimiento, en un solo gráfico
+- [x] Extender la comparación a las 5 variables (no solo 3): usar r² para gasto/cantera/valor de plantilla y η² (ANOVA) para entrenador/presidente, en la misma unidad de "varianza explicada"
+- [x] Corregir sesgo de grupos de tamaño 1 en el cálculo de η² (filtrar entrenadores con 1 sola temporada, solo para este cálculo puntual)
+- [x] Resultado final: entrenador (η²=0.727) y presidente (η²=0.606) explican más varianza del rendimiento que valor de plantilla (r²=0.567), muy por encima de cantera (r²=0.075) y gasto (r²=0.052)
+- [x] Verificar y descartar con evidencia la hipótesis de que la correlación débil de cantera se debiera a poca variabilidad del dato (coeficientes de variación similares entre cantera y valor de plantilla)
+- [x] Visualización resumen final: comparación de las 5 variables en una sola escala
 - [x] Escribir una narrativa consolidada de los hallazgos de las 4 fases en conjunto (notebook `06_dataset_final.ipynb`)
 - [x] Revisar que README, PLAN_MAESTRO y NOTAS_METODOLOGICAS reflejen el proyecto completo de punta a punta
-- [ ] Commit de cierre de la etapa de análisis completa
+- [x] Commit de cierre de la etapa de análisis completa
 
 ---
 
 ## PARTE 4 — Presentación final
 
 ### 4.1 Dashboard en Tableau Public
-- [ ] Definir qué vistas/hojas va a tener el dashboard (basado en los hallazgos ya documentados)
-- [ ] Preparar los CSVs finales que se van a importar a Tableau
-- [ ] Construir las hojas en Tableau Desktop
-- [ ] Armar el dashboard combinando las hojas
-- [ ] Publicar en Tableau Public
-- [ ] Confirmar que el link público funciona
+
+**Herramienta:** Tableau Public vía creación web (no hay versión de escritorio para Linux/Ubuntu). Se guarda únicamente publicando (no hay "guardar borrador" privado).
+
+**Fuente de datos:** `dataset_final.csv`, conectado una sola vez, `Temporada` corregida a tipo texto para no perder el cero inicial, y un campo calculado `Temporada Formato` (`STR([Anio Inicio]) + "/" + RIGHT(STR([Anio Inicio] + 1), 2)`) para mostrar `1993/94` en vez de `1993` en todos los ejes.
+
+**Estructura: 4 dashboards temáticos (no 16 hojas sueltas), uno por fase, navegables por pestaña.** Prioriza narrativa sobre volcar todo lo hecho en Matplotlib.
+
+#### Dashboard 1 — Rendimiento, gasto y entrenador (Fase 1)
+- [x] Hoja 1: Gráfico integrador (barras de gasto + línea de rendimiento coloreada por entrenador) — EN PROGRESO
+- [ ] Hoja 2: Rendimiento por entrenador (barras horizontales, distinción 2+/1 temporada)
+- [ ] Hoja 3: Rendimiento histórico simple (línea, 33 temporadas) — opcional si hay espacio
+- [ ] Ensamblar dashboard 1
+
+#### Dashboard 2 — Cantera (Fase 2)
+- [ ] Hoja 1: Uso de cantera por temporada (línea con estrellas de título)
+- [ ] Hoja 2: Uso de cantera y títulos por entrenador
+- [ ] Hoja 3: Top canteranos con más minutos (mención honorífica)
+- [ ] Ensamblar dashboard 2
+
+#### Dashboard 3 — Valor de plantilla (Fase 3, el hallazgo más fuerte)
+- [ ] Hoja 1: Valor de plantilla vs rendimiento (scatter con estrellas, r=0.753) — la pieza central del proyecto
+- [ ] Hoja 2: Valor vs gasto reciente (evidencia Yamal/Gavi/Eric García)
+- [ ] Ensamblar dashboard 3
+
+#### Dashboard 4 — Presidentes y resumen final (Fase 4 + unificación)
+- [ ] Hoja 1: Rendimiento vs gasto por presidente (lado a lado, Gaspart vs Laporta)
+- [ ] Hoja 2: Comparación final de las 5 variables (r²/η²) — cierre del proyecto
+- [ ] Ensamblar dashboard 4
+
+**Visualizaciones del notebook que quedan fuera de Tableau a propósito** (viven solo en los notebooks, como evidencia analítica de respaldo, no en la presentación): proporción de mercado vs rendimiento (scatter), boxplot de gasto por categoría, categorías por entrenador (apiladas), ataque vs defensa, local vs visitante, rendimiento histórico con estrellas (Fase 1 extendida). Redundantes con lo que ya cuentan las hojas seleccionadas.
+
+- [ ] Publicar los 4 dashboards en Tableau Public
+- [ ] Confirmar que los links públicos funcionan
+- [ ] Agregar los links al README
 
 ### 4.2 Sitio de portafolio (React + Vercel)
 - [ ] Confirmar si ya existe el sitio base o hay que crearlo desde cero
