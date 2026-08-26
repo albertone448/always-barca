@@ -12,6 +12,17 @@ Soy ingeniero en sistemas recién graduado, buscando trabajo como Data Analyst, 
 
 Decidí no limitar el análisis a una sola era (por ejemplo, solo la época Guardiola), porque eso reduce demasiado el número de temporadas y le quita fuerza estadística a cualquier patrón. En su lugar, trato al entrenador y al presidente como variables más dentro de todo el rango temporal, para poder ver tanto el patrón general como comparar entre eras.
 
+## Alcance y consideraciones clave del análisis
+
+Antes de entrar a los hallazgos, esto es lo que hay que tener presente para interpretarlos bien:
+
+- **No todas las variables cubren las mismas 33 temporadas.** Rendimiento, gasto neto, entrenador y presidente están completos para 1993/94-2025/26. Uso de cantera y valor de mercado de plantilla solo cubren 2012/13-2025/26 (14 de 33 temporadas), porque los datos de apariciones y valoraciones de Transfermarkt no tienen cobertura confiable antes de esa fecha. No se aproximó el resto del rango con un proxy de menor calidad, se documentó la limitación y se acotó el análisis.
+- **Tres temporadas tienen contexto atípico documentado explícitamente**, no tratado como dato normal: 2020/21 (pandemia, sin público en ningún partido), 2023/24 y 2024/25 (local en el Montjuïc por la remodelación del Camp Nou).
+- **Una corrección manual sobre los datos crudos:** la tabla de posiciones de 2006/07 se reconstruyó con un criterio de puntos simplificado que da empate técnico entre Barça y Real Madrid, pero el título real se decidió por el criterio de desempate oficial (resultados entre ambos), que favoreció al Madrid. Se corrigió a mano para reflejar el resultado real.
+- **"Canterano" no tiene una definición única en el fútbol.** Este proyecto usa un criterio amplio (cualquier jugador en la tabla de Wikipedia "Jugadores formados en La Masía", incluyendo quienes pasaron por el filial), no solo quienes llegaron desde las categorías más jóvenes. Con otro criterio, los números de uso de cantera podrían variar.
+- **Correlación no es causalidad.** Esto aplica sobre todo a los hallazgos de Fase 4: que el gasto promedio de un presidente no se asocie con mejor rendimiento no significa que gastar menos sea buena gestión, hay contexto financiero heredado de por medio (ver hallazgos de esa fase más abajo).
+- El razonamiento detallado detrás de cada una de estas decisiones está en [NOTAS_METODOLOGICAS.md](./NOTAS_METODOLOGICAS.md).
+
 ## Estado del proyecto
 
 Las 4 fases de análisis están completas: rendimiento y gasto (Fase 1), uso de canteranos (Fase 2), valor de mercado de plantilla (Fase 3), y presidentes/directiva (Fase 4), unificadas en un dataset final y una comparación conjunta de todas las variables.
