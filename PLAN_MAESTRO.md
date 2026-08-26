@@ -117,11 +117,14 @@ Documento de seguimiento secuencial. Se trabaja de arriba hacia abajo, un paso a
 
 **Estructura: 4 dashboards temáticos (no 16 hojas sueltas), uno por fase, navegables por pestaña.** Prioriza narrativa sobre volcar todo lo hecho en Matplotlib.
 
-#### Dashboard 1 — Rendimiento, gasto y entrenador (Fase 1)
-- [x] Hoja 1: Gráfico integrador (barras de gasto + línea de rendimiento coloreada por entrenador) — EN PROGRESO
-- [ ] Hoja 2: Rendimiento por entrenador (barras horizontales, distinción 2+/1 temporada)
-- [ ] Hoja 3: Rendimiento histórico simple (línea, 33 temporadas) — opcional si hay espacio
-- [ ] Ensamblar dashboard 1
+#### Dashboard 1 — Rendimiento, gasto y entrenador (Fase 1) — COMPLETO Y PUBLICADO
+- [x] Hoja 1: Gráfico integrador (barras de gasto + línea de rendimiento coloreada por entrenador)
+- [x] Hoja 2: Rendimiento por entrenador (barras horizontales, distinción 2+/1 temporada, campo calculado `Grupo Muestra Entrenador` con LOD fijo)
+- [x] Hoja 3: Rendimiento histórico simple (línea, 33 temporadas)
+- [x] Campo calculado `Años de Temporada` para formato `1993/94` en todos los ejes
+- [x] Ensamblar dashboard 1 (1 grande arriba + 2 lado a lado abajo, leyendas reubicadas debajo)
+- [x] Título del dashboard puesto
+- [x] Publicado en Tableau Public
 
 #### Dashboard 2 — Cantera (Fase 2)
 - [ ] Hoja 1: Uso de cantera por temporada (línea con estrellas de título)
