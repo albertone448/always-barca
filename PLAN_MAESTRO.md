@@ -45,14 +45,15 @@ Documento de seguimiento secuencial. Se trabaja de arriba hacia abajo, un paso a
 - [x] Calcular la métrica para las 14 temporadas con cobertura de datos (2012/13-2025/26)
 - [x] Detectar y documentar limitación adicional: cobertura reducida de apariciones en 2020/21 (menos registros que el resto, sin explicación de valores nulos)
 - [x] Visualización: uso de cantera por temporada, con estrellas de Título y formato de temporada `2020/21`
-- [ ] **PRIMERO EN LA PRÓXIMA SESIÓN: aplicar el mismo formato de eje (`2020/21` en vez de `2020`) a los gráficos de `02_analisis_rendimiento.ipynb` que usan `anio_inicio` (rendimiento histórico, integrador, local vs visitante)**
+- [x] Aplicar el mismo formato de eje (`2020/21` en vez de `2020`) a los gráficos de `02_analisis_rendimiento.ipynb` (commit `dc4f5d4`, checkbox desactualizado, ya resuelto en su momento)
 - [x] Analizar relación entre uso de cantera y rendimiento (Pearson r=0.274, p=0.344, no significativa)
 - [x] Analizar uso de cantera y títulos por entrenador (2+ temporadas), con visualización
 - [x] Markdown de hallazgos finales de Fase 2 en el notebook
 - [x] Reflexión personal documentada por separado (hipótesis sobre el peso de "las personas al mando", marcada explícitamente como no demostrada, con propuesta de Fase 4 en README)
-- [ ] Actualizar README con el cierre de Fase 2
-- [ ] Actualizar NOTAS_METODOLOGICAS.md con las técnicas de Fase 2 (BeautifulSoup aplicado, unidecode, validación de nombres, manejo de cobertura parcial)
-- [ ] Commit de Fase 2
+- [x] Actualizar README con el cierre de Fase 2 (commit `72ace49`, checkbox desactualizado, ya resuelto en su momento)
+- [x] Actualizar NOTAS_METODOLOGICAS.md con las técnicas de Fase 2 (commit `72ace49`, checkbox desactualizado, ya resuelto en su momento)
+- [x] Commit de Fase 2 (`72ace49`, checkbox desactualizado, ya resuelto en su momento)
+- [x] Exportar `top_canteranos_minutos.csv` a `data/processed/`, pendiente desde el notebook 03 (la tabla nunca se había persistido, solo existía como Series de pandas usada para el gráfico de Matplotlib), necesario para conectarlo como fuente de datos nueva en la Hoja 3 del Dashboard 2 de Tableau
 
 ---
 
@@ -126,11 +127,12 @@ Documento de seguimiento secuencial. Se trabaja de arriba hacia abajo, un paso a
 - [x] Título del dashboard puesto
 - [x] Publicado en Tableau Public
 
-#### Dashboard 2 — Cantera (Fase 2)
-- [ ] Hoja 1: Uso de cantera por temporada (línea con estrellas de título)
-- [ ] Hoja 2: Uso de cantera y títulos por entrenador
-- [ ] Hoja 3: Top canteranos con más minutos (mención honorífica)
-- [ ] Ensamblar dashboard 2
+#### Dashboard 2 — Cantera (Fase 2) — COMPLETO Y PUBLICADO
+- [x] Hoja 1: Uso de cantera por temporada (línea con estrellas de título), filtrada a 2012/13-2025/26 con filtro de contexto sobre `Anio Inicio`, marcador de título vía campo calculado `Cantera en Titulo` combinado en eje doble
+- [x] Hoja 2: Uso de cantera y títulos por entrenador, con campo calculado propio `Grupo Muestra Entrenador Cantera` (2+ temporadas dentro de la ventana de cantera, distinto del campo equivalente del Dashboard 1 que usa las 33 temporadas completas) y `Titulos Entrenador Cantera` como etiqueta
+- [x] Hoja 3: Top canteranos con más minutos (mención honorífica), en fuente de datos nueva (`top_canteranos_minutos.csv`, exportada desde el notebook 03, no existía como archivo hasta esta sesión), filtro Top 15 por `minutos_jugados`
+- [x] Ensamblar dashboard 2 (1 grande arriba + 2 lado a lado abajo, mismo patrón que Dashboard 1)
+- [x] Publicado en Tableau Public
 
 #### Dashboard 3 — Valor de plantilla (Fase 3, el hallazgo más fuerte)
 - [ ] Hoja 1: Valor de plantilla vs rendimiento (scatter con estrellas, r=0.753) — la pieza central del proyecto
