@@ -141,30 +141,27 @@ Documento de seguimiento secuencial. Se trabaja de arriba hacia abajo, un paso a
 - [x] Publicado en Tableau Public
 - [x] Bug de reproducibilidad corregido en `notebooks/04_valor_mercado.ipynb`: `correlacion_valor` y `p_valor_valor` se usaban en el título del gráfico (celda con el scatter) sin haberse calculado en ninguna celda visible, dependían de estado residual del kernel de una sesión anterior. Se agregó la celda de `pearsonr()` explícita antes del gráfico. De paso se corrigió el conteo de temporadas en la conclusión (decía 13, son 14)
 
-#### Dashboard 4 — Presidentes y resumen final (Fase 4 + unificación)
-- [ ] Hoja 1: Rendimiento vs gasto por presidente (lado a lado, Gaspart vs Laporta)
-- [ ] Hoja 2: Comparación final de las 5 variables (r²/η²) — cierre del proyecto
-- [ ] Ensamblar dashboard 4
+#### Dashboard 4 — Presidentes y resumen final (Fase 4 + unificación) — COMPLETO Y PUBLICADO
+- [x] Hoja 1: Rendimiento vs gasto por presidente (2 hojas separadas, no una: escalas muy distintas entre rendimiento ~0.5-0.8 y gasto ~5%-11% para forzarlas al mismo eje). Ambas hojas con el mismo orden manual de presidentes (Rosell, Bartomeu, Laporta, Núñez, Gaspart), no el orden automático de cada métrica, para poder comparar Gaspart vs Laporta fila por fila entre las dos hojas
+- [x] Hoja 2: Comparación final de las 5 variables (r²/η²) — cierre del proyecto. Entrenador 0.727, Presidente 0.606, Valor de plantilla 0.567 (las 3 significativas), Uso de cantera 0.075 y Gasto neto 0.052 (no significativas). Fuente de datos nueva (`comparacion_final_variables.csv`), exportada con `.to_csv()` desde el notebook 06 mismo, no generada aparte, para que el pipeline completo sea reproducible corriendo los notebooks
+- [x] Ensamblar dashboard 4 (comparación final grande arriba, las 2 hojas de presidentes lado a lado abajo)
+- [x] Publicado en Tableau Public
 
 **Visualizaciones del notebook que quedan fuera de Tableau a propósito** (viven solo en los notebooks, como evidencia analítica de respaldo, no en la presentación): proporción de mercado vs rendimiento (scatter), boxplot de gasto por categoría, categorías por entrenador (apiladas), ataque vs defensa, local vs visitante, rendimiento histórico con estrellas (Fase 1 extendida). Redundantes con lo que ya cuentan las hojas seleccionadas.
 
-- [ ] Publicar los 4 dashboards en Tableau Public
-- [ ] Confirmar que los links públicos funcionan
-- [ ] Agregar los links al README
-
-### 4.2 Sitio de portafolio (React + Vercel)
-- [ ] Confirmar si ya existe el sitio base o hay que crearlo desde cero
-- [ ] Sección de proyectos: agregar always-barca
-- [ ] Embeber el dashboard de Tableau Public vía iframe
-- [ ] Desplegar en Vercel
-- [ ] Confirmar que el link público funciona
+- [x] Publicar los 4 dashboards en Tableau Public
+- [x] Confirmar que los links públicos funcionan
+- [x] Agregar los links al README
 
 ---
+
+## PROYECTO COMPLETO
+
+Los 4 dashboards de Tableau Public están construidos, publicados y enlazados desde el README. Se agregó una reflexión personal final al notebook 06 (integrando el rol de la cantera dentro del hallazgo de valor de plantilla) y una nota personal de cierre al README. El sitio de portafolio (React + Vercel), que incluirá este proyecto junto con otros, se planifica y ejecuta por separado, fuera del alcance de este plan.
 
 ## PARTE 5 — Deuda técnica / sueltos
 
 - [x] Confirmar si se regeneró el token de Kaggle que quedó expuesto en pantalla hace varias sesiones — confirmado, regenerado
-- [ ] Última pasada de revisión general del README, una vez cerradas todas las fases
 
 ---
 

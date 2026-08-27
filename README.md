@@ -86,10 +86,12 @@ Se descartó, con evidencia, la hipótesis de que la correlación débil de cant
 
 **Con esto se cierra el análisis completo del proyecto.**
 
-## Próximos pasos
+## Dashboards en Tableau Public
 
-- Dashboard final en Tableau Public.
-- Sitio de portafolio en React, desplegado en Vercel.
+- [Fase 1: Rendimiento, gasto y entrenador](https://public.tableau.com/views/AlwaysBara/Dashboard1?:language=es-ES&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
+- [Fase 2: Uso de canteranos](https://public.tableau.com/views/AlwaysBara/UsodecanteranosFase2?:language=es-ES&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
+- [Fase 3: Valor de plantilla](https://public.tableau.com/views/AlwaysBara/Fase3Valordeplantilla?:language=es-ES&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
+- [Fase 4: Presidentes y resumen final](https://public.tableau.com/views/AlwaysBara/Dashboard4?:language=es-ES&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
 ## Stack
 
@@ -118,3 +120,9 @@ always-barca/
 └── reports/
     └── figures/                          # Visualizaciones exportadas
 ```
+
+## Nota personal
+
+Este proyecto no nació de un dataset genérico elegido por conveniencia, nació de ser culé. Escribo esto en Alajuela, Costa Rica, a casi 8,970 kilómetros en línea recta de Barcelona, y esa distancia es justamente parte del punto: dentro de España, ser del Barça está muy ligado a Cataluña, con un peso identitario y político regional que no es comparable con simplemente preferir a un equipo sobre otro. Fuera de España, ese peso regional desaparece, y lo que queda es otra cosa. Estoy convencido, aunque esto no es algo que un dataset pueda demostrar, de que ningún otro club del mundo genera fuera de su país el nivel de pasión que genera el Barça en su afición extranjera, ni siquiera comparado con otros gigantes europeos con hinchada global.
+
+Qué curioso, además, terminar este análisis justo en un momento donde la ilusión por el club vuelve a sentirse fuerte: una generación de La Masía otra vez cargando al equipo, con nombres que ya aparecen en los propios datos de este proyecto (Yamal, Cubarsí, Fermín López), y decisiones institucionales que, al menos por ahora, parecen ir en la dirección correcta. Si algo deja claro este proyecto, tanto en los números como en lo que no se puede medir, es que las épocas doradas del Barça siempre han combinado cantera propia con buenas decisiones de quienes están al mando. Ojalá esta sea una de esas épocas.
