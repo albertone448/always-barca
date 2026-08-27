@@ -1,0 +1,6 @@
+variable,varianza_explicada,significativa,tipo_metrica
+Entrenador,0.7267404633423413,Si,eta cuadrado
+Presidente,0.6059419435366473,Si,eta cuadrado
+Valor de plantilla,0.567009,Si,r cuadrado
+Uso de cantera,0.07507600000000002,No,r cuadrado
+Gasto neto,0.051529000000000005,No,r cuadrado
