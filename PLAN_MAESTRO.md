@@ -134,10 +134,12 @@ Documento de seguimiento secuencial. Se trabaja de arriba hacia abajo, un paso a
 - [x] Ensamblar dashboard 2 (1 grande arriba + 2 lado a lado abajo, mismo patrón que Dashboard 1)
 - [x] Publicado en Tableau Public
 
-#### Dashboard 3 — Valor de plantilla (Fase 3, el hallazgo más fuerte)
-- [ ] Hoja 1: Valor de plantilla vs rendimiento (scatter con estrellas, r=0.753) — la pieza central del proyecto
-- [ ] Hoja 2: Valor vs gasto reciente (evidencia Yamal/Gavi/Eric García)
-- [ ] Ensamblar dashboard 3
+#### Dashboard 3 — Valor de plantilla (Fase 3, el hallazgo más fuerte) — COMPLETO Y PUBLICADO
+- [x] Hoja 1: Valor de plantilla vs rendimiento (scatter, r=0.753, p=0.002, sobre 14 temporadas) — la pieza central del proyecto. Marcador de Título vía eje doble con campo calculado `Rendimiento si Titulo` (color dorado, no estrella: la forma de estrella dejaba ver el círculo de fondo por los huecos entre puntas, en un scatter no funciona igual que en una línea). Línea de tendencia lineal. Las 14 temporadas anotadas manualmente (Anotar → Marca), no con el campo de Etiqueta automático, porque con 14 puntos tan cercanos Tableau ocultaba etiquetas por superposición
+- [x] Hoja 2: Valor vs gasto reciente (evidencia Yamal/Gavi/Eric García), mismo patrón de color dorado/eje doble con `Valor si Titulo`. Las 5 temporadas de mayor diferencia (valor - gasto) son la evidencia central: 2023/24 (+0.317), 2015/16 (+0.294), 2020/21 (+0.238), 2025/26 (+0.212), 2024/25 (+0.186), con 2023/24 y 2020/21 mostrando gasto neto *negativo* y valor de plantilla sostenido, la prueba más fuerte de valor generado sin comprar
+- [x] Ensamblar dashboard 3 (1 grande arriba + 1 abajo, tamaño de dashboard ampliado a "Automático" en vez del estándar, porque 14 anotaciones por hoja no caben en el tamaño por defecto)
+- [x] Publicado en Tableau Public
+- [x] Bug de reproducibilidad corregido en `notebooks/04_valor_mercado.ipynb`: `correlacion_valor` y `p_valor_valor` se usaban en el título del gráfico (celda con el scatter) sin haberse calculado en ninguna celda visible, dependían de estado residual del kernel de una sesión anterior. Se agregó la celda de `pearsonr()` explícita antes del gráfico. De paso se corrigió el conteo de temporadas en la conclusión (decía 13, son 14)
 
 #### Dashboard 4 — Presidentes y resumen final (Fase 4 + unificación)
 - [ ] Hoja 1: Rendimiento vs gasto por presidente (lado a lado, Gaspart vs Laporta)
